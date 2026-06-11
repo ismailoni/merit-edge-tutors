@@ -1,0 +1,13 @@
+{
+  "name": "muerit-edge-tutors",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-sqlite server.mjs",
+    "test": "node --experimental-sqlite tests/backend.test.mjs"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

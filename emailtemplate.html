@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!--[if mso]>
+  <noscript>
+    <xml><o:OfficeDocumentSettings>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings></xml>
+  </noscript>
+  <![endif]-->
+  <title>New ICAN Registration — Merit Edge Tutors</title>
+  <style>
+    /* ── Reset ── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    img { -ms-interpolation-mode: bicubic; border: 0; display: block; }
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #07111F;
+      color: #1A2A42;
+      margin: 0;
+      padding: 0;
+    }
+
+    .email-body {
+      background-color: #07111F;
+      padding: 48px 16px 64px;
+    }
+
+    /* ── Wrapper ── */
+    .wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── Logo bar ── */
+    .logo-bar {
+      text-align: center;
+      padding-bottom: 28px;
+    }
+
+    .logo-bar-inner {
+      display: inline-block;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.22);
+      border-radius: 100px;
+      padding: 10px 24px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 13px;
+      font-weight: bold;
+      color: #E2C46E;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .logo-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: #C9A84C;
+      border-radius: 50%;
+      margin-right: 9px;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+    }
+
+    /* ── Main card ── */
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.55);
+    }
+
+    /* ── Card header ── */
+    .card-header {
+      background: #08172B;
+      padding: 44px 48px 40px;
+      position: relative;
+    }
+
+    .card-header-accent {
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, #C9A84C 30%, #E2C46E 50%, #C9A84C 70%, transparent 100%);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      color: #E2C46E;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+    }
+
+    .header-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 34px;
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .header-title em {
+      font-style: normal;
+      color: #E2C46E;
+    }
+
+    .header-sub {
+      color: rgba(255,255,255,0.45);
+      font-size: 14px;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .header-meta {
+      margin-top: 24px;
+      padding: 14px 18px;
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.16);
+      border-radius: 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.6;
+    }
+
+    .header-meta strong {
+      color: rgba(255,255,255,0.72);
+      font-weight: 600;
+    }
+
+    /* ── Card body ── */
+    .card-body {
+      background: #FAF8F3;
+      padding: 40px 48px 48px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 20px;
+    }
+
+    /* ── Info grid ── */
+    .info-grid {
+      margin-bottom: 28px;
+    }
+
+    .info-row {
+      display: table;
+      width: 100%;
+      border-bottom: 1px solid #E8EAF0;
+      padding: 14px 0;
+    }
+
+    .info-row:first-child {
+      border-top: 1px solid #E8EAF0;
+    }
+
+    .info-label {
+      display: table-cell;
+      width: 38%;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #6B7280;
+      vertical-align: middle;
+      padding-right: 12px;
+    }
+
+    .info-value {
+      display: table-cell;
+      font-size: 14px;
+      color: #1A2A42;
+      font-weight: 500;
+      vertical-align: middle;
+    }
+
+    /* ── Highlight row (level) ── */
+    .info-row.highlight .info-value {
+      font-weight: 700;
+    }
+
+    .level-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .level-tag.Foundation  { background: rgba(59,130,246,0.1);  color: #1D4ED8; }
+    .level-tag.Skills      { background: rgba(16,185,129,0.1);  color: #065F46; }
+    .level-tag.Professional { background: rgba(201,168,76,0.14); color: #92650A; }
+
+    /* ── Courses block ── */
+    .courses-block {
+      background: #ffffff;
+      border: 1.5px solid #E8EAF0;
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 28px;
+    }
+
+    .courses-block-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #6B7280;
+      margin-bottom: 14px;
+    }
+
+    .course-pill {
+      display: inline-block;
+      background: #F4F2EE;
+      border: 1px solid #E8EAF0;
+      color: #1A2A42;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin: 4px 4px 4px 0;
+    }
+
+    /* ── Contact card ── */
+    .contact-row {
+      display: table;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .contact-icon-cell {
+      display: table-cell;
+      width: 36px;
+      vertical-align: middle;
+    }
+
+    .contact-icon {
+      width: 32px;
+      height: 32px;
+      background: #08172B;
+      border-radius: 50%;
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+
+    .contact-text-cell {
+      display: table-cell;
+      vertical-align: middle;
+      padding-left: 12px;
+    }
+
+    .contact-type {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #6B7280;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .contact-val {
+      font-size: 14px;
+      color: #1A2A42;
+      font-weight: 500;
+    }
+
+    .contact-val a {
+      color: #08172B;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,168,76,0.4);
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #E8EAF0, transparent);
+      margin: 28px 0;
+    }
+
+    /* ── CTA button ── */
+    .cta-wrap {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: #08172B;
+      color: #E2C46E !important;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 15px 36px;
+      border-radius: 100px;
+      letter-spacing: 0.4px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 36px 24px 0;
+    }
+
+    .footer-brand {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 14px;
+      font-weight: bold;
+      color: #E2C46E;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.75;
+    }
+
+    .footer-text a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,168,76,0.25);
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin: 24px 0 20px;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 480px) {
+      .email-body { padding: 24px 8px 40px; }
+      .card-header { padding: 30px 24px 26px; }
+      .card-body { padding: 28px 24px 36px; }
+      .header-title { font-size: 26px; }
+      .info-label { font-size: 10px; width: 42%; }
+      .info-value { font-size: 13px; }
+      .footer { padding: 28px 16px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-body">
+    <div class="wrapper">
+
+      <!-- Logo bar -->
+      <div class="logo-bar">
+        <div class="logo-bar-inner">
+          <span class="logo-dot"></span>Merit Edge Tutors
+        </div>
+      </div>
+
+      <!-- Main card -->
+      <div class="card">
+
+        <!-- Header -->
+        <div class="card-header">
+          <div class="badge">&#9679;&nbsp; New Registration</div>
+          <div class="header-title">
+            ICAN Student<br/><em>Registration Received</em>
+          </div>
+          <p class="header-sub">
+            A new student has submitted their registration form.<br/>
+            Full details are listed below.
+          </p>
+          <div class="header-meta">
+            <strong>Submitted:</strong> {{timestamp}}
+          </div>
+        </div>
+        <div class="card-header-accent"></div>
+
+        <!-- Body -->
+        <div class="card-body">
+
+          <!-- Student info -->
+          <div class="section-label">&#9632;&nbsp; Student Details</div>
+          <div class="info-grid">
+
+            <div class="info-row">
+              <div class="info-label">Full Name</div>
+              <div class="info-value">{{full_name}}</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-label">ICAN Reg. No.</div>
+              <div class="info-value">{{ican_number}}</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-label">Year Registered</div>
+              <div class="info-value">{{year}}</div>
+            </div>
+
+            <div class="info-row highlight">
+              <div class="info-label">ICAN Level</div>
+              <div class="info-value">
+                <span class="level-tag {{level}}">{{level}}</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Courses -->
+          <div class="courses-block">
+            <div class="courses-block-title">&#9632;&nbsp; Selected Courses</div>
+            <div id="courses-pills">
+              {{courses}}
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Contact -->
+          <div class="section-label">&#9632;&nbsp; Contact Information</div>
+
+          <div class="contact-row">
+            <div class="contact-icon-cell">
+              <table width="32" height="32" style="background:#08172B;border-radius:50%;text-align:center;" cellpadding="0" cellspacing="0">
+                <tr><td align="center" valign="middle" style="color:#E2C46E;font-size:15px;">&#9993;</td></tr>
+              </table>
+            </div>
+            <div class="contact-text-cell">
+              <div class="contact-type">Email</div>
+              <div class="contact-val"><a href="mailto:{{email}}">{{email}}</a></div>
+            </div>
+          </div>
+
+          <br/>
+
+          <div class="contact-row">
+            <div class="contact-icon-cell">
+              <table width="32" height="32" style="background:#08172B;border-radius:50%;text-align:center;" cellpadding="0" cellspacing="0">
+                <tr><td align="center" valign="middle" style="color:#E2C46E;font-size:15px;">&#9742;</td></tr>
+              </table>
+            </div>
+            <div class="contact-text-cell">
+              <div class="contact-type">Phone</div>
+              <div class="contact-val"><a href="tel:{{phone}}">{{phone}}</a></div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="cta-wrap">
+            <a class="cta-btn" href="mailto:{{email}}">Reply to Student &rarr;</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="footer-brand">Merit Edge Tutors</div>
+        <div class="footer-divider"></div>
+        <div class="footer-text">
+          This email was sent automatically when a student submitted the ICAN registration form.<br/>
+          Questions? Contact us at <a href="mailto:meritedgetutors@gmail.com">meritedgetutors@gmail.com</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

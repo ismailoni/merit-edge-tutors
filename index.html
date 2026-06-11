@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merit Edge Tutors - ICAN Student Registration</title>
+
+  <!-- SEO: Core meta -->
+  <meta name="description" content="Register for premium ICAN coaching at Merit Edge Tutors. Choose your Foundation, Skills, or Professional level and enrol in focused exam-prep tuition today." />
+  <meta name="keywords" content="ICAN coaching, ICAN tuition, ICAN exam prep, chartered accountants Nigeria, ICAN Foundation, ICAN Skills, ICAN Professional, accounting tutor Nigeria" />
+  <meta name="author" content="Merit Edge Tutors" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://meritedgetutors.com/" />
+
+  <!-- SEO: Open Graph (Facebook / LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://meritedgetutors.com/" />
+  <meta property="og:title" content="ICAN Student Registration — Merit Edge Tutors" />
+  <meta property="og:description" content="Register for premium ICAN coaching. Choose your Foundation, Skills, or Professional level and enrol in focused exam-prep tuition at Merit Edge Tutors." />
+  <meta property="og:site_name" content="Merit Edge Tutors" />
+  <meta property="og:locale" content="en_NG" />
+
+  <!-- SEO: Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ICAN Student Registration — Merit Edge Tutors" />
+  <meta name="twitter:description" content="Premium ICAN exam coaching — Foundation, Skills &amp; Professional levels. Register now and start preparing smarter." />
+  <meta name="twitter:site" content="@MeritEdgeTutors" />
+
+  <!-- SEO: Theme colour -->
+  <meta name="theme-color" content="#0d1b2a" />
+
+  <!-- SEO: Structured data — Organisation -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Merit Edge Tutors",
+    "url": "https://meritedgetutors.com/",
+    "email": "meritedgetutors@gmail.com",
+    "description": "Premium ICAN exam coaching covering Foundation, Skills, and Professional levels.",
+    "knowsAbout": ["ICAN Foundation", "ICAN Skills", "ICAN Professional", "Chartered Accountancy", "Accounting Tuition"],
+    "areaServed": "Nigeria",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "meritedgetutors@gmail.com",
+      "contactType": "admissions"
+    }
+  }
+  </script>
+
+  <!-- SEO: Structured data — WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "ICAN Student Registration",
+    "url": "https://meritedgetutors.com/",
+    "description": "Register for ICAN exam coaching at Merit Edge Tutors. Select your level and courses to begin your guided enrolment.",
+    "publisher": {
+      "@type": "EducationalOrganization",
+      "name": "Merit Edge Tutors"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="api.js"></script>
+</head>
+<body>
+
+
+  <!-- Page wrap -->
+  <main class="page-wrap registration-page">
+    <section class="hero-panel" aria-label="Registration benefits">
+      <div class="hero-kicker">Premium ICAN coaching</div>
+      <h2>Register faster. Start preparing smarter.</h2>
+      <p>Choose your ICAN level, select the exact courses you are taking, and submit your details through a guided, confidence-building experience.</p>
+      <div class="hero-metrics">
+        <div><strong>3</strong><span>ICAN levels</span></div>
+        <div><strong>15</strong><span>focused subjects</span></div>
+        <div><strong>24h</strong><span>response target</span></div>
+      </div>
+      <div class="experience-card">
+        <span class="experience-icon">✓</span>
+        <div>
+          <strong>Guided enrolment flow</strong>
+          <p>Clear validation, course reveal, and secure submission details keep the process simple.</p>
+        </div>
+      </div>
+    </section>
+    <div class="form-container">
+      <div class="card">
+
+        <!-- Header -->
+        <div class="card-header">
+          <div class="header-badge"><span></span>Merit Edge Tutors</div>
+          <h1>ICAN Student<br/><em>Registration Form</em></h1>
+          <p>Complete the form below to register. All fields marked * are required.</p>
+        </div>
+
+        <!-- Success screen -->
+        <div class="success-screen" id="success-screen">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h2>Registration Submitted!</h2>
+          <p>Thank you for registering with Merit Edge Tutors.<br/>We will be in touch at the email address you provided.</p>
+        </div>
+
+        <div class="closed-screen" id="closed-screen">
+          <div class="closed-icon">⏳</div>
+          <p class="closed-kicker">Registration closed</p>
+          <h2>We are not accepting registrations right now.</h2>
+          <p id="closed-message">Please check back soon or contact Merit Edge Tutors for the next available intake.</p>
+          <a class="closed-contact" href="mailto:meritedgetutors@gmail.com">Contact Merit Edge Tutors</a>
+        </div>
+
+        <!-- Form -->
+        <form class="form-body" id="reg-form" novalidate>
+          <div class="form-progress" aria-label="Registration steps">
+            <span class="active">Profile</span>
+            <span>Level</span>
+            <span>Contact</span>
+          </div>
+
+          <!-- Full name -->
+          <div class="field-group" id="fg-name">
+            <label class="field-label">Full Name <span class="req">*</span></label>
+            <div class="input-wrap has-icon">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </span>
+              <input class="reg-form" type="text" id="f-name" placeholder="e.g. Amina Yusuf" autocomplete="name"/>
+            </div>
+            <div class="field-error">Please enter your full name.</div>
+          </div>
+
+          <!-- ICAN number + year in a row -->
+          <div class="field-row">
+            <div class="field-group" id="fg-ican" style="margin-bottom:0">
+              <label class="field-label">ICAN Reg. Number <span class="req">*</span></label>
+              <div class="input-wrap has-icon">
+                <span class="input-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="16" rx="2"/>
+                    <path d="M8 2v4M16 2v4M3 10h18"/>
+                  </svg>
+                </span>
+                <input class="reg-form" type="text" id="f-ican" placeholder="ICAN/2024/00123"/>
+              </div>
+              <div class="field-error">Enter your ICAN number.</div>
+            </div>
+
+            <div class="field-group" id="fg-year" style="margin-bottom:0">
+              <label class="field-label">Year Registered <span class="req">*</span></label>
+              <div class="input-wrap has-icon select-wrap">
+                <span class="input-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M12 7v5l3 3"/>
+                  </svg>
+                </span>
+                <select id="f-year">
+                  <option value="" disabled selected>Select year</option>
+                </select>
+              </div>
+              <div class="field-error">Select your year.</div>
+            </div>
+          </div>
+
+          <!-- Level -->
+          <div class="field-group" id="fg-level" style="margin-top:24px;">
+            <label class="field-label">Level <span class="req">*</span></label>
+            <div class="level-group">
+              <span>
+                <input type="radio" id="lvl-f" name="Level" value="Foundation"/>
+                <label for="lvl-f" class="level-pill">
+                  <span class="level-pill-name">Foundation</span>
+                  <span class="level-pill-desc">4 subjects</span>
+                </label>
+              </span>
+              <span>
+                <input type="radio" id="lvl-s" name="Level" value="Skills"/>
+                <label for="lvl-s" class="level-pill">
+                  <span class="level-pill-name">Skills</span>
+                  <span class="level-pill-desc">6 subjects</span>
+                </label>
+              </span>
+              <span>
+                <input type="radio" id="lvl-p" name="Level" value="Professional"/>
+                <label for="lvl-p" class="level-pill">
+                  <span class="level-pill-name">Professional</span>
+                  <span class="level-pill-desc">5 subjects</span>
+                </label>
+              </span>
+            </div>
+            <div class="field-error">Please select your level.</div>
+          </div>
+
+          <!-- Courses -->
+          <div class="field-group" id="courses-section">
+            <label class="field-label">
+              Courses <span class="req">*</span>
+              <span class="hint">(select all you are taking)</span>
+            </label>
+            <div class="courses-grid" id="courses-grid"></div>
+            <div class="field-error">Please select at least one course.</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Email + phone in a row -->
+          <div class="field-row">
+            <div class="field-group" id="fg-email" style="margin-bottom:0">
+              <label class="field-label">Email Address <span class="req">*</span></label>
+              <div class="input-wrap has-icon">
+                <span class="input-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </span>
+                <input class="reg-form" type="email" id="f-email" placeholder="you@email.com" autocomplete="email"/>
+              </div>
+              <div class="field-error">Enter a valid email.</div>
+            </div>
+
+            <div class="field-group" id="fg-phone" style="margin-bottom:0">
+              <label class="field-label">Phone Number <span class="req">*</span></label>
+              <div class="input-wrap has-icon">
+                <span class="input-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.09 4.18 2 2 0 015.07 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                  </svg>
+                </span>
+                <input class="reg-form" type="tel" id="f-phone" placeholder="08012345678" autocomplete="tel"/>
+              </div>
+              <div class="field-error">Enter your phone number.</div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div style="margin-top:32px;">
+            <button type="submit" class="submit-btn" id="submit-btn">
+              <div class="btn-inner">
+                Submit Registration <span class="btn-arrow">→</span>
+              </div>
+            </button>
+            <p class="footer-note">
+              Responses are handled securely by the Merit Edge Tutors backend.<br/>
+              Your information is kept confidential.
+            </p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </main>
+
+<script>
+  // ── EmailJS init ──
+  (function initEmailJS() {
+    const key = MERIT_CONFIG.emailjs ? MERIT_CONFIG.emailjs.publicKey : '';
+    if (typeof emailjs !== 'undefined' && key && !key.includes('YOUR_')) {
+      emailjs.init({ publicKey: key });
+    }
+  })();
+  
+  const FALLBACK_COURSES = MERIT_CONFIG.fallbackCourses;
+  let COURSES = FALLBACK_COURSES;
+  let formStatus = 'open';
+  let closedMessage = MERIT_CONFIG.fallbackClosedMessage;
+  let appsScriptUrl = MERIT_CONFIG.appsScriptUrl || '';
+  
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"]/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'
+    }[char]));
+  }
+
+  function updateCourseCounts() {
+    document.querySelectorAll('input[name="Level"]').forEach(input => {
+      const desc = document.querySelector(`label[for="${input.id}"] .level-pill-desc`);
+      const count = (COURSES[input.value] || []).length;
+      if (desc) desc.textContent = `${count} subject${count === 1 ? '' : 's'}`;
+    });
+  }
+
+  function applyRegistrationSettings() {
+    updateCourseCounts();
+    if (formStatus === 'closed') {
+      document.getElementById('reg-form').style.display = 'none';
+      document.getElementById('closed-message').textContent = closedMessage;
+      document.getElementById('closed-screen').classList.add('visible');
+    } else {
+      document.getElementById('reg-form').style.display = '';
+      document.getElementById('closed-screen').classList.remove('visible');
+    }
+  }
+
+  applyRegistrationSettings();
+
+  (async function loadBackendConfig() {
+    try {
+      const cfg = await window.__metApi.publicConfig();
+      COURSES = cfg.courses || FALLBACK_COURSES;
+      formStatus = cfg.formStatus || 'open';
+      closedMessage = cfg.closedMessage || MERIT_CONFIG.fallbackClosedMessage;
+      appsScriptUrl = cfg.appsScriptUrl || MERIT_CONFIG.appsScriptUrl || '';
+      const contact = cfg.contactEmail || MERIT_CONFIG.publicContactEmail;
+      const contactLink = document.querySelector('.closed-contact');
+      if (contactLink && contact) contactLink.href = `mailto:${contact}`;
+      applyRegistrationSettings();
+    } catch (error) {
+      console.warn('Backend configuration load failed:', error);
+      formStatus = 'closed';
+      closedMessage = 'Registration is temporarily unavailable. Please try again later.';
+      applyRegistrationSettings();
+    }
+  })();
+
+  const yrSel = document.getElementById('f-year');
+  const now = new Date().getFullYear();
+  for (let y = now; y >= 2000; y--) {
+    const o = document.createElement('option');
+    o.value = y; o.textContent = y;
+    yrSel.appendChild(o);
+  }
+
+  document.querySelectorAll('input[name="Level"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const grid = document.getElementById('courses-grid');
+      const sec  = document.getElementById('courses-section');
+      grid.innerHTML = '';
+      const levelCourses = COURSES[r.value] || [];
+      levelCourses.forEach((c, i) => {
+        const item = document.createElement('div');
+        item.className = 'course-item';
+        item.innerHTML = `
+          <input type="checkbox" id="c${i}" value="${escapeHtml(c)}"/>
+          <div class="course-check">
+            <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="1.5,6 4.5,9.5 10.5,2.5"/>
+            </svg>
+          </div>
+          <span class="course-name">${escapeHtml(c)}</span>`;
+        item.addEventListener('click', () => {
+          const cb = item.querySelector('input');
+          cb.checked = !cb.checked;
+          item.classList.toggle('selected', cb.checked);
+          sec.classList.remove('has-error');
+        });
+        grid.appendChild(item);
+      });
+      if (!levelCourses.length) {
+        grid.innerHTML = '<p class="footer-note">No subjects are configured for this level yet.</p>';
+      }
+      sec.classList.add('visible');
+      sec.classList.remove('has-error');
+    });
+  });
+
+  function mark(id, ok) {
+    document.getElementById('fg-' + id)?.classList.toggle('has-error', !ok);
+  }
+
+  function val(id) { return document.getElementById('f-' + id).value.trim(); }
+
+  document.getElementById('reg-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    if (formStatus === 'closed') return;
+
+    const selectedLevel = document.querySelector('input[name="Level"]:checked');
+    const selectedCourses = Array.from(document.querySelectorAll('#courses-grid input:checked')).map(cb => cb.value);
+    const payload = {
+      Name: val('name'),
+      ExamNumber: val('ican'),
+      ExamYear: val('year'),
+      Level: selectedLevel ? selectedLevel.value : '',
+      Courses: selectedCourses,
+      Email: val('email'),
+      Phone: val('phone'),
+    };
+
+    let ok = true;
+    mark('name', !!payload.Name); ok &&= !!payload.Name;
+    mark('ican', !!payload.ExamNumber); ok &&= !!payload.ExamNumber;
+    mark('year', !!payload.ExamYear); ok &&= !!payload.ExamYear;
+    document.getElementById('fg-level').classList.toggle('has-error', !payload.Level); ok &&= !!payload.Level;
+    document.getElementById('courses-section').classList.toggle('has-error', !selectedCourses.length); ok &&= !!selectedCourses.length;
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.Email);
+    mark('email', emailOk); ok &&= emailOk;
+    mark('phone', !!payload.Phone); ok &&= !!payload.Phone;
+    if (!ok) return;
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.querySelector('.btn-inner').innerHTML = 'Submitting…';
+
+    try {
+      // await window.__metApi.submitRegistration(payload);
+            // Save directly to Google Sheet (legacy client-side write via Apps Script)
+      try {
+        const sheetUrl = appsScriptUrl || '';
+        if (sheetUrl && !sheetUrl.includes('YOUR_')) {
+          await fetch(sheetUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              timestamp: new Date().toLocaleString('en-NG'),
+              name:      payload.Name,
+              ican:      payload.ExamNumber,
+              level:     payload.Level,
+              courses:   payload.Courses.join(', '),
+              email:     payload.Email,
+              phone:     payload.Phone,
+              year:      payload.ExamYear,
+            }),
+          });
+        } else {
+          console.warn('Google Sheet: Apps Script URL not configured in the settings page');
+        }
+      } catch (err) {
+        console.warn('Sheet write failed:', err);
+      }
+
+      document.getElementById('reg-form').style.display = 'none';
+      document.getElementById('success-screen').classList.add('visible');
+
+      
+      // Notify admin via EmailJS (non-blocking; failure must not break submission)
+      try {
+        const ejsCfg = MERIT_CONFIG.emailjs || {};
+        const serviceId  = ejsCfg.serviceId  || '';
+        const templateId = ejsCfg.templateId || '';
+        if (typeof emailjs !== 'undefined' &&
+            serviceId && !serviceId.includes('YOUR_') &&
+            templateId && !templateId.includes('YOUR_')) {
+          await emailjs.send(serviceId, templateId, {
+            full_name:   payload.Name,
+            ican_number: payload.ExamNumber,
+            level:       payload.Level,
+            courses:     payload.Courses.join(', '),
+            email:       payload.Email,
+            phone:       payload.Phone,
+            year:        payload.ExamYear,
+            timestamp:   new Date().toLocaleString(),
+            to_email:    MERIT_CONFIG.adminEmail || MERIT_CONFIG.publicContactEmail,
+          });
+        } else {
+          console.warn('EmailJS: credentials not configured in config.js');
+        }
+      } catch (err) {
+        console.warn('EmailJS send failed:', err);
+      }
+
+    } catch (error) {
+      alert(error.message || 'Registration failed. Please try again.');
+    } finally {
+      btn.disabled = false;
+      btn.querySelector('.btn-inner').innerHTML = 'Submit Registration <span class="btn-arrow">→</span>';
+    }
+  });
+</script>
+</body>
+</html>

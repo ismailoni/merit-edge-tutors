@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard — Merit Edge Tutors</title>
+
+    <!-- SEO: Prevent search engines indexing private admin pages -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0d1b2a" />
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="../config.js"></script>
+    <script src="../api.js"></script>
+    <script src="../auth.js"></script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="top-nav">
+      <a href="/" class="nav-brand">Merit Edge Tutors</a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            />
+          </svg>
+          Registration
+        </a>
+        <a href="/dashboard" class="nav-link active">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
+          </svg>
+          Dashboard
+        </a>
+        <a href="/settings" class="nav-link">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"
+            />
+          </svg>
+          Settings
+        </a>
+        <button class="nav-logout" onclick="window.__metAuth.logout()" title="Log out">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            Logout
+          </button>
+      </div>
+    </nav>
+
+    <!-- Page wrap -->
+    <main class="page-wrap" style="align-items: flex-start">
+      <div class="dash-wrap">
+        <div class="dash-card">
+          <!-- Header -->
+          <div class="dash-header">
+            <div class="dash-header-left">
+              <h2>Registration Dashboard</h2>
+              <p>Live overview of all ICAN student registrations</p>
+            </div>
+            <button class="refresh-btn" onclick="loadDashboard()">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="23 4 23 10 17 10" />
+                <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10" />
+              </svg>
+              Refresh
+            </button>
+          </div>
+
+          <div class="dash-toolbar">
+            <div>
+              <span class="toolbar-label">Data source</span>
+              <strong id="sheet-status">Checking connection…</strong>
+            </div>
+            <a class="toolbar-action" href="/settings">Configure Sheets</a>
+          </div>
+          <!-- Stats -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value" id="stat-total">—</div>
+              <div class="stat-label">Total Registrations</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="stat-month">—</div>
+              <div class="stat-label">This Month</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="stat-level">—</div>
+              <div class="stat-label">Top Level</div>
+            </div>
+          </div>
+
+          <!-- Charts -->
+          <div class="charts-row">
+            <div class="chart-card">
+              <h4>By Level</h4>
+              <div class="chart-wrap"><canvas id="chart-level"></canvas></div>
+            </div>
+            <div class="chart-card">
+              <h4>Registrations Over Time</h4>
+              <div class="chart-wrap"><canvas id="chart-time"></canvas></div>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="table-section">
+            <div class="table-header">
+              <h4>Recent Registrations</h4>
+              <span class="table-count" id="table-count">Showing 0</span>
+            </div>
+            <div class="table-controls" aria-label="Registration filters">
+              <div class="dashboard-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="M21 21l-4.35-4.35" />
+                </svg>
+                <input type="search" id="registration-search" placeholder="Search name, email, phone, course…" autocomplete="off" />
+              </div>
+              <div class="filter-bar">
+                <select id="level-filter" aria-label="Filter by level">
+                  <option value="">All levels</option>
+                  <option value="Foundation">Foundation</option>
+                  <option value="Skills">Skills</option>
+                  <option value="Professional">Professional</option>
+                </select>
+                <button type="button" class="clear-filters-btn" id="clear-filters">Clear</button>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Level</th>
+                    <th>Courses</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="reg-tbody">
+                  <tr>
+                    <td colspan="6" class="empty-state">
+                      Connect your Google Sheet above to see registrations
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="dash-loader" class="dash-loader">
+        <div class="loader-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <p class="loader-text">Loading registrations…</p>
+      </div>
+    </main>
+
+    <script>
+      const sheetStatus = document.getElementById("sheet-status");
+      sheetStatus.textContent = "Connected to secure backend";
+      loadDashboard();
+
+      let lvlChart, timeChart;
+      let dashboardRows = [];
+      const searchInput = document.getElementById("registration-search");
+      const levelFilter = document.getElementById("level-filter");
+      const clearFiltersBtn = document.getElementById("clear-filters");
+      const tableCount = document.getElementById("table-count");
+
+      async function loadDashboard() {
+        const loader = document.getElementById("dash-loader");
+        loader.classList.add("visible");
+        try {
+          const data = await window.__metApi.adminSubmissions();
+          const rows = data.rows || [];
+          if (!rows || rows.length <= 1) {
+            renderEmpty();
+            return;
+          }
+          sheetStatus.textContent = "Backend connected — last refreshed " + new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+          renderDashboard(rows.slice(1));
+        } catch (e) {
+          sheetStatus.textContent = e.status === 401 ? "Login required" : "Backend connection failed";
+          console.warn("Dashboard load failed:", e);
+          renderEmpty();
+        } finally {
+          loader.classList.remove("visible");
+        }
+      }
+
+      function renderEmpty() {
+        document.getElementById("stat-total").textContent = "0";
+        document.getElementById("stat-month").textContent = "0";
+        document.getElementById("stat-level").textContent = "—";
+        dashboardRows = [];
+        tableCount.textContent = "Showing 0";
+        document.getElementById("reg-tbody").innerHTML =
+          '<tr><td colspan="6" class="empty-state">No registrations yet.</td></tr>';
+      }
+
+      function parseRegistrationDate(value) {
+        if (!value) return null;
+
+        if (value instanceof Date && !Number.isNaN(value.getTime())) {
+          return value;
+        }
+
+        if (typeof value === "number") {
+          // Google Sheets serial dates count days from 1899-12-30.
+          const sheetsEpoch = Date.UTC(1899, 11, 30);
+          const date = new Date(sheetsEpoch + value * 24 * 60 * 60 * 1000);
+          return Number.isNaN(date.getTime()) ? null : date;
+        }
+
+        const normalized = String(value).trim();
+        if (!normalized) return null;
+
+        const date = new Date(normalized);
+        return Number.isNaN(date.getTime()) ? null : date;
+      }
+
+      function formatRegistrationDate(value) {
+        const date = parseRegistrationDate(value);
+        if (!date) return value || "—";
+
+        return new Intl.DateTimeFormat(undefined, {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+        }).format(date);
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "").replace(/[&<>"]/g, (char) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+        }[char]));
+      }
+
+      function normalizeWhatsAppPhone(value) {
+        const raw = String(value || "").trim();
+        if (!raw) return "";
+        let digits = raw.replace(/\D/g, "");
+
+        if (raw.startsWith("+") && digits) return digits;
+        if (digits.startsWith("0")) return `234${digits.slice(1)}`;
+        return digits;
+      }
+
+      function getFilteredRegistrations() {
+        const query = searchInput.value.trim().toLowerCase();
+        const selectedLevel = levelFilter.value;
+
+        return dashboardRows.filter((r) => {
+          const matchesLevel = !selectedLevel || r[3] === selectedLevel;
+          const searchable = [r[1], r[3], r[4], r[5], r[6], formatRegistrationDate(r[0])]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+          const matchesSearch = !query || searchable.includes(query);
+          return matchesLevel && matchesSearch;
+        });
+      }
+
+      function renderRegistrationTable(rows) {
+        const tbody = document.getElementById("reg-tbody");
+        tbody.innerHTML = "";
+        tableCount.textContent = `Showing ${Math.min(rows.length, 50)} of ${dashboardRows.length}`;
+
+        if (!rows.length) {
+          tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No registrations match your filters.</td></tr>';
+          return;
+        }
+
+        [...rows]
+          .reverse()
+          .slice(0, 50)
+          .forEach((r) => {
+            const lvl = escapeHtml(r[3] || "");
+            const email = String(r[5] || "").trim();
+            const phone = String(r[6] || "").trim();
+            const whatsappPhone = normalizeWhatsAppPhone(phone);
+            const safeEmail = escapeHtml(email);
+            const safePhone = escapeHtml(phone);
+            const emailCell = email
+              ? `<a class="contact-link" href="mailto:${encodeURIComponent(email)}">${safeEmail}</a>`
+              : "—";
+            const phoneCell = phone && whatsappPhone
+              ? `<a class="contact-link whatsapp-link" href="https://wa.me/${whatsappPhone}" target="_blank" rel="noopener noreferrer">${safePhone}</a>`
+              : (safePhone || "—");
+
+            tbody.innerHTML += `
+        <tr>
+          <td class="td-name">${escapeHtml(r[1] || "—")}</td>
+          <td><span class="level-tag ${lvl}">${lvl || "—"}</span></td>
+          <td class="td-courses">${escapeHtml(r[4] || "—")}</td>
+          <td style="font-size:12px;">${emailCell}</td>
+          <td style="font-size:12px;">${phoneCell}</td>
+          <td class="td-date" title="${escapeHtml(r[0] || "")}">${escapeHtml(formatRegistrationDate(r[0]))}</td>
+        </tr>`;
+          });
+      }
+
+      function updateRegistrationFilters() {
+        renderRegistrationTable(getFilteredRegistrations());
+      }
+
+      function renderDashboard(data) {
+        dashboardRows = data;
+        const now = new Date();
+        const thisMonth = data.filter((r) => {
+          const d = parseRegistrationDate(r[0]);
+          return d && (
+            d.getMonth() === now.getMonth() &&
+            d.getFullYear() === now.getFullYear()
+          );
+        }).length;
+
+        const levelCount = {};
+        data.forEach((r) => {
+          const l = r[3];
+          if (l) levelCount[l] = (levelCount[l] || 0) + 1;
+        });
+        const topLevel = Object.entries(levelCount).sort(
+          (a, b) => b[1] - a[1],
+        )[0];
+
+        document.getElementById("stat-total").textContent = data.length;
+        document.getElementById("stat-month").textContent = thisMonth;
+        document.getElementById("stat-level").textContent = topLevel
+          ? topLevel[0]
+          : "—";
+
+        // Level doughnut
+        if (lvlChart) lvlChart.destroy();
+        lvlChart = new Chart(document.getElementById("chart-level"), {
+          type: "doughnut",
+          data: {
+            labels: Object.keys(levelCount),
+            datasets: [
+              {
+                data: Object.values(levelCount),
+                backgroundColor: [
+                  "rgba(59,130,246,0.7)",
+                  "rgba(16,185,129,0.7)",
+                  "rgba(201,168,76,0.75)",
+                ],
+                borderWidth: 0,
+                hoverOffset: 8,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: "68%",
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  color: "rgba(255,255,255,0.42)",
+                  font: { size: 11, family: "Outfit" },
+                  boxWidth: 10,
+                  boxHeight: 10,
+                  padding: 14,
+                },
+              },
+            },
+          },
+        });
+
+        // Time bar
+        const monthMap = {};
+        data.forEach((r) => {
+          const d = parseRegistrationDate(r[0]);
+          if (!d) return;
+          const k = d.toLocaleString("default", {
+            month: "short",
+            year: "2-digit",
+          });
+          monthMap[k] = (monthMap[k] || 0) + 1;
+        });
+        const tlabels = Object.keys(monthMap).slice(-8);
+
+        if (timeChart) timeChart.destroy();
+        timeChart = new Chart(document.getElementById("chart-time"), {
+          type: "bar",
+          data: {
+            labels: tlabels,
+            datasets: [
+              {
+                data: tlabels.map((k) => monthMap[k]),
+                backgroundColor: "rgba(201,168,76,0.35)",
+                borderColor: "rgba(201,168,76,0.8)",
+                borderWidth: 1,
+                borderRadius: 6,
+                borderSkipped: false,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              x: {
+                ticks: {
+                  color: "rgba(255,255,255,0.35)",
+                  font: { size: 11, family: "Outfit" },
+                },
+                grid: { display: false },
+                border: { display: false },
+              },
+              y: {
+                ticks: {
+                  color: "rgba(255,255,255,0.35)",
+                  font: { size: 11, family: "Outfit" },
+                  stepSize: 1,
+                },
+                grid: { color: "rgba(255,255,255,0.04)" },
+                border: { display: false },
+              },
+            },
+          },
+        });
+
+        updateRegistrationFilters();
+      }
+
+      searchInput.addEventListener("input", updateRegistrationFilters);
+      levelFilter.addEventListener("change", updateRegistrationFilters);
+      clearFiltersBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        levelFilter.value = "";
+        updateRegistrationFilters();
+      });
+    </script>
+  </body>
+</html>
