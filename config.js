@@ -1,5 +1,5 @@
 window.MERIT_CONFIG = {
-  apiBaseUrl: 'https://p01--merit-edge--nv5wfjyjydtf.code.run',
+  apiBaseUrl: 'p01--merit-edge-tutors--ydlvlxqgcmzg.code.run',
   defaultFormId: 'ican-registration',
   publicContactEmail: 'meritedgetutors@gmail.com',
 
