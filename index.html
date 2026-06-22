@@ -120,14 +120,26 @@
               <p class="whatsapp-cta-title">Join our WhatsApp Group</p>
               <p class="whatsapp-cta-desc">Get class updates, study materials, and connect with fellow students.</p>
             </div>
-            <a class="whatsapp-cta-btn" href="https://chat.whatsapp.com/IfAHK1xkqXY5Hpme4BSBuB" target="_blank" rel="noopener noreferrer">
-              Join Group
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-            </a>
+            <div class="whatsapp-cta-actions">
+              <a class="whatsapp-cta-btn" href="https://chat.whatsapp.com/IfAHK1xkqXY5Hpme4BSBuB" target="_blank" rel="noopener noreferrer">
+                Join Group
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+              <button class="whatsapp-copy-btn" id="whatsapp-copy-btn" type="button" aria-label="Copy WhatsApp link">
+                <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                </svg>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" style="display:none">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span class="copy-label">Copy Link</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -488,6 +500,23 @@
       btn.disabled = false;
       btn.querySelector('.btn-inner').innerHTML = 'Submit Registration <span class="btn-arrow">→</span>';
     }
+  });
+
+  document.getElementById('whatsapp-copy-btn').addEventListener('click', function () {
+    const url = 'https://chat.whatsapp.com/IfAHK1xkqXY5Hpme4BSBuB';
+    navigator.clipboard.writeText(url).then(() => {
+      const copyIcon = this.querySelector('.copy-icon');
+      const checkIcon = this.querySelector('.check-icon');
+      const label = this.querySelector('.copy-label');
+      copyIcon.style.display = 'none';
+      checkIcon.style.display = '';
+      label.textContent = 'Copied!';
+      setTimeout(() => {
+        copyIcon.style.display = '';
+        checkIcon.style.display = 'none';
+        label.textContent = 'Copy Link';
+      }, 2000);
+    });
   });
 </script>
 </body>
